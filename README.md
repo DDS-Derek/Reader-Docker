@@ -1,5 +1,11 @@
 # reader
 
+## 介绍
+
+本镜像增加了PUID，PGID，Umask设置
+
+## 部署
+
 ### docker-cli
 
 ```
@@ -14,8 +20,8 @@ docker run -d \
     -v $(pwd)/logs:/logs \
     -v $(pwd)/storage:/storage \
     -p 8080:8080 \
-    ddsderek/reader\
-    # openj9-latest
+    ddsderek/reader:latest
+    # ddsderek/reader:openj9-latest
 
 # 多用户版 使用环境变量(建议修改映射端口)
 docker run -d \
@@ -31,8 +37,8 @@ docker run -d \
     -v $(pwd)/logs:/logs \
     -v $(pwd)/storage:/storage \
     -p 8080:8080 \
-    ddsderek/reader
-    # openj9-latest
+    ddsderek/reader:latest
+    # ddsderek/reader:openj9-latest
 ```
 
 ### docker-compose
@@ -46,7 +52,7 @@ services:
 # 公众号汇总 : [https://mp.weixin.qq.com/s/5t8nfSnRfHjJNAvT76fA_A](https://mp.weixin.qq.com/s/5t8nfSnRfHjJNAvT76fA_A)
 # 手动更新方式 : docker-compose pull && docker-compose up -d
   reader:
-    image: ddsderek/reader
+    image: ddsderek/reader:latest
     #image: ddsderek/reader:openj9-latest #docker镜像，arm64架构或小内存机器优先使用此镜像.启用需删除上一行
     container_name: reader #容器名 可自行修改
     restart: always
