@@ -2,6 +2,8 @@
 
 ## 介绍
 
+官方Github仓库: https://github.com/hectorqin/reader
+
 本镜像增加了PUID，PGID，Umask设置
 
 ## 部署
