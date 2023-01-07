@@ -16,6 +16,8 @@ ENV TZ=Asia/Shanghai \
     PGID=1000 \
     UMASK=022
 
+ENV READER_VERSION=openjdk-8
+
 ENTRYPOINT ["/sbin/tini", "/entrypoint.sh"]
 
 EXPOSE 8080
