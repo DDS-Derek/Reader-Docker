@@ -1,6 +1,6 @@
-ARG VERSION=2.7.3
+ARG READER_TAG=2.7.3
 
-FROM hectorqin/reader:${VERSION} AS CHOOSE
+FROM hectorqin/reader:${READER_TAG} AS CHOOSE
 
 FROM openjdk:8-jdk-alpine
 
@@ -16,7 +16,7 @@ ENV TZ=Asia/Shanghai \
     PGID=1000 \
     UMASK=022
 
-ENV READER_VERSION=openjdk-8
+ENV READER_JAVA_VERSION=openjdk-8
 
 ENTRYPOINT ["/sbin/tini", "/entrypoint.sh"]
 

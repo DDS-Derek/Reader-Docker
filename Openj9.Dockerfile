@@ -1,6 +1,6 @@
-ARG VERSION=2.7.3
+ARG READER_TAG=2.7.3
 
-FROM hectorqin/reader:openj9-${VERSION} AS CHOOSE
+FROM hectorqin/reader:openj9-${READER_TAG} AS CHOOSE
 
 FROM ibm-semeru-runtimes:open-8u332-b09-jre
 
@@ -16,7 +16,7 @@ ENV TZ=Asia/Shanghai \
     PGID=1000 \
     UMASK=022
 
-ENV READER_VERSION=openj9
+ENV READER_JAVA_VERSION=openj9
 
 ENTRYPOINT ["/usr/bin/tini", "/entrypoint.sh"]
 
