@@ -12,5 +12,9 @@ umask ${UMASK}
 if [ "${READER_JAVA_VERSION}" = "openj9" ]; then
     exec gosu     ${PUID}:${PGID} java -jar /app/bin/reader.jar
 else
-    exec su-exec  ${PUID}:${PGID} java -jar /app/bin/reader.jar
+    if [ "${READER_JAVA_VERSION}" = "openjdk-8" ]; then
+        exec su-exec  ${PUID}:${PGID} java -jar /app/bin/reader.jar
+    else
+        $(date +"%Y-%m-%d %T") Reader failed to start
+    fi
 fi
