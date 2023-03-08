@@ -1,4 +1,4 @@
-ARG READER_TAG=2.7.4
+ARG READER_TAG=3.0.0
 
 FROM hectorqin/reader:${READER_TAG} AS CHOOSE
 
