@@ -4,7 +4,7 @@ FROM hectorqin/reader:${READER_TAG} AS CHOOSE
 
 FROM openjdk:8-jdk-alpine
 
-RUN apk add --no-cache ca-certificates tini tzdata su-exec bash; \
+RUN apk add --no-cache ca-certificates dumb-init tzdata su-exec bash; \
     update-ca-certificates; \
     rm -rf /var/cache/apk/*;
 
@@ -18,7 +18,8 @@ ENV PS1="\[\e[32m\][\[\e[m\]\[\e[36m\]\u \[\e[m\]\[\e[37m\]@ \[\e[m\]\[\e[34m\]\
     PGID=1000 \
     UMASK=022
 
-ENTRYPOINT ["/sbin/tini", "/entrypoint.sh"]
+ENTRYPOINT [ "/entrypoint.sh" ]
+CMD ["java", "-jar", "/app/bin/reader.jar" ]
 
 EXPOSE 8080
 
