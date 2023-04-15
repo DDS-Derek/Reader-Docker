@@ -2,7 +2,7 @@ ARG READER_TAG
 
 FROM hectorqin/reader:${READER_TAG} AS CHOOSE
 
-FROM openjdk:8-jdk-alpine
+FROM openjdk:17-jdk-alpine
 
 RUN apk add --no-cache ca-certificates dumb-init tzdata su-exec bash; \
     update-ca-certificates; \
