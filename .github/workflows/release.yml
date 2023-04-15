@@ -16,8 +16,9 @@ jobs:
       - name: Set Version
         id: set-version
         run: |
-          echo "version=${GITHUB_REF:10}" >> $GITHUB_OUTPUT
-          echo "ReleaseTag=${GITHUB_REF:10}"
+          version=$(echo "${GITHUB_REF:10}" | cut -d'-' -f1 | sed 's/^v//')
+          echo "ReleaseTag=${version}"
+          echo "version=${version}" >> $GITHUB_OUTPUT
 
       - 
         name: Set Up QEMU
@@ -66,8 +67,9 @@ jobs:
       - name: Set Version
         id: set-version
         run: |
-          echo "version=${GITHUB_REF:10}" >> $GITHUB_OUTPUT
-          echo "ReleaseTag=${GITHUB_REF:10}"
+          version=$(echo "${GITHUB_REF:10}" | cut -d'-' -f1 | sed 's/^v//')
+          echo "ReleaseTag=${version}"
+          echo "version=${version}" >> $GITHUB_OUTPUT
 
       - 
         name: Set Up QEMU

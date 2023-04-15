@@ -1,4 +1,4 @@
-ARG READER_TAG=3.0.2
+ARG READER_TAG
 
 FROM hectorqin/reader:openj9-${READER_TAG} AS CHOOSE
 
