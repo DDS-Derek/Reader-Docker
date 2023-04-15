@@ -13,6 +13,12 @@ jobs:
         name: Checkout
         uses: actions/checkout@master
       
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ${{ secrets.DOCKER_USERNAME }}/reader
+
       - name: Set Version
         id: set-version
         run: |
@@ -51,10 +57,11 @@ jobs:
             linux/s390x
           push: true
           build-args: |
-            VERSION=${{ steps.set-version.outputs.version }}
+            READER_TAG=${{ steps.set-version.outputs.version }}
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/reader:${{ steps.set-version.outputs.version }}
             ${{ secrets.DOCKER_USERNAME }}/reader:latest
+          labels: ${{ steps.meta.outputs.labels }}
 
   job2:
     name: Build-Openj9
@@ -64,6 +71,12 @@ jobs:
         name: Checkout
         uses: actions/checkout@master
       
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ${{ secrets.DOCKER_USERNAME }}/reader
+
       - name: Set Version
         id: set-version
         run: |
@@ -99,10 +112,11 @@ jobs:
             linux/s390x
           push: true
           build-args: |
-            VERSION=${{ steps.set-version.outputs.version }}
+            READER_TAG=${{ steps.set-version.outputs.version }}
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/reader:openj9-${{ steps.set-version.outputs.version }}
             ${{ secrets.DOCKER_USERNAME }}/reader:openj9-latest
+          labels: ${{ steps.meta.outputs.labels }}
 
   job3:
     needs: [job1, job2]
